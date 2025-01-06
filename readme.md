@@ -183,4 +183,4 @@ This project is proprietary and confidential.
 
 ## 📞 Support
 
-For support and queries, contact the development team at [contact details].
+For support and queries, contact the development team at support@toolskt.com.
