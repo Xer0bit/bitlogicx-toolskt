@@ -57,7 +57,7 @@ export default function ContactPage() {
                 <div className="space-y-6 flex-grow">
                   <div className="flex items-center">
                     <TbMail className="text-yellow-300 text-2xl mr-4" />
-                    <span>support@toolskt.com</span>
+                    <span>support@scriptro.com</span>
                   </div>
                   <div className="flex items-center">
                     <TbPhone className="text-yellow-300 text-2xl mr-4" />

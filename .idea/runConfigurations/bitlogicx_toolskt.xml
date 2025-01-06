@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="bitlogicx-toolskt" type="Python.DjangoServer" factoryName="Django server">
-    <module name="bitlogicx-toolskt" />
+  <configuration default="false" name="bitlogicx-scriptro" type="Python.DjangoServer" factoryName="Django server">
+    <module name="bitlogicx-scriptro" />
     <option name="ENV_FILES" value="" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
@@ -10,7 +10,7 @@
     </envs>
     <option name="SDK_HOME" value="" />
     <option name="SDK_NAME" value="toolkit" />
-    <option name="WORKING_DIRECTORY" value="E:\Office\bitlogicx-toolskt\bitlogicx-toolskt" />
+    <option name="WORKING_DIRECTORY" value="E:\Office\bitlogicx-scriptro\bitlogicx-scriptro" />
     <option name="IS_MODULE_SDK" value="false" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />

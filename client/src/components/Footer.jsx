@@ -5,7 +5,7 @@ const Footer = () => {
   const LINKS = [
     {
       title: "Tools",
-      items: ["Toolskt", "Toolskt", "Toolskt", "Toolskt"],
+      items: ["scriptro", "scriptro", "scriptro", "scriptro"],
     },
   ];
 
@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="mx-auto w-full max-w-7xl px-8">
           <div className="mt-12 flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between">
             <h5 className="mb-4 text-center font-normal opacity-50 text-blue-gray-900 md:mb-0">
-              &copy; {currentYear} <span>Toolskt</span>. All Rights Reserved.
+              &copy; {currentYear} <span>scriptro</span>. All Rights Reserved.
             </h5>
             <div className="flex gap-4 text-blue-gray-900 sm:justify-center">
               <div className="opacity-80 hover:text-indigo-500 cursor-pointer duration-300 transition-opacity hover:opacity-100">

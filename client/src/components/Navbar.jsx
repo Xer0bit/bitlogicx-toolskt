@@ -35,8 +35,8 @@ const Navbar = () => {
 
   return (
     <div className="bg-slate-950">
-      <div className="py-8 flex items-center justify-between text-white px-4">
-        <div className="text-2xl font-bold text-yellow-300">TOOLSKT</div>
+      <div className="py-6 flex items-center justify-between text-white px-10">
+        <div className="text-2xl font-bold text-yellow-300">Scriptro</div>
         
         {/* Desktop menu */}
         <div className="md:flex justify-between items-center gap-10 hidden">

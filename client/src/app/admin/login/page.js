@@ -89,7 +89,7 @@ const AdminLoginPage = () => {
           </div>
           <div className="w-1/2 flex-col p-5 gap-5 border-l hidden lg:flex">
             <div className="">
-              <Image src={"/icons/toolskt.png"} width={150} height={150} />
+              <Image src={"/icons/scriptro.png"} width={150} height={150} />
             </div>
             <p className="text-gray-900">
               We are serving with the best online tools to make your daily work
@@ -152,7 +152,7 @@ const AdminLoginPage = () => {
           </div>
           <div className="w-1/2 flex-col p-5 gap-5 mt-2 border-l border-gray-900 hidden lg:flex">
             <div className="">
-              <Image src={"/icons/toolskt.png"} width={150} height={150} />
+              <Image src={"/icons/scriptro.png"} width={150} height={150} />
             </div>
             <p className="text-gray-900">
               We are serving with the best online tools to make your daily work

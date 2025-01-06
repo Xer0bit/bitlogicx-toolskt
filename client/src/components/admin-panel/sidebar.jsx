@@ -39,7 +39,7 @@ const Sidebar = () => {
     <div className="flex fixed flex-col h-screen p-3 bg-indigo-500 text-white shadow w-60">
       <div className="space-y-3">
         <div className="flex items-center">
-          <h2 className="text-xl font-bold">Toolskt</h2>
+          <h2 className="text-xl font-bold">scriptro</h2>
         </div>
         <div className="flex-1">
           <ul className="pt-2 pb-4 space-y-1 text-sm">

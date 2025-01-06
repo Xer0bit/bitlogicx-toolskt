@@ -1,6 +1,6 @@
-# Toolskt - Digital Tools Platform
+# scriptro - Digital Tools Platform
 
-Toolskt is a comprehensive web-based toolkit platform offering various digital tools for users, including PDF editing, image manipulation, text conversion, and more.
+scriptro is a comprehensive web-based toolkit platform offering various digital tools for users, including PDF editing, image manipulation, text conversion, and more.
 
 ## 🚀 Technology Stack
 
@@ -90,7 +90,7 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-toolskt/
+scriptro/
 ├── tkd/                    # Backend Django project
 │   ├── admin_app/         # Admin management
 │   ├── tools/             # Tools implementation
@@ -183,4 +183,4 @@ This project is proprietary and confidential.
 
 ## 📞 Support
 
-For support and queries, contact the development team at support@toolskt.com.
+For support and queries, contact the development team at support@scriptro.com.

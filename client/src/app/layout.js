@@ -7,10 +7,10 @@ const inter = Inter({
 import { Providers } from "@/redux/provider";
 
 export const metadata = {
-  metadataBase: new URL('https://toolskt.com'),
+  metadataBase: new URL('https://scriptro.com'),
   title: {
-    default: 'Toolskt - Digital Tools Platform | Online File Tools & Converters',
-    template: '%s | Toolskt'
+    default: 'Scriptro - Digital Tools Platform | Online File Tools & Converters',
+    template: '%s | scriptro'
   },
   description: 'Free online tools for PDF editing, image manipulation, text conversion, and more. Easy-to-use digital tools to enhance your productivity.',
   keywords: [
@@ -23,9 +23,9 @@ export const metadata = {
     'online converter',
     'productivity tools'
   ],
-  authors: [{ name: 'Toolskt Team' }],
-  creator: 'Toolskt',
-  publisher: 'Toolskt',
+  authors: [{ name: 'scriptro Team' }],
+  creator: 'scriptro',
+  publisher: 'scriptro',
   formatDetection: {
     email: false,
     address: false,
@@ -34,25 +34,25 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://toolskt.com',
-    siteName: 'Toolskt',
-    title: 'Toolskt - Digital Tools Platform',
+    url: 'https://scriptro.com',
+    siteName: 'scriptro',
+    title: 'scriptro - Digital Tools Platform',
     description: 'Free online tools for PDF editing, image manipulation, text conversion, and more.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Toolskt - Digital Tools Platform'
+        alt: 'scriptro - Digital Tools Platform'
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Toolskt - Digital Tools Platform',
+    title: 'scriptro - Digital Tools Platform',
     description: 'Free online tools for PDF editing, image manipulation, text conversion, and more.',
     images: ['/twitter-image.jpg'],
-    creator: '@toolskt',
+    creator: '@scriptro',
   },
   robots: {
     index: true,
@@ -71,9 +71,9 @@ export const metadata = {
     yahoo: 'your-yahoo-verification-code',
   },
   alternates: {
-    canonical: 'https://toolskt.com',
+    canonical: 'https://scriptro.com',
     languages: {
-      'en-US': 'https://toolskt.com',
+      'en-US': 'https://scriptro.com',
     },
   },
   icons: {

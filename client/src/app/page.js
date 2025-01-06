@@ -27,13 +27,13 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row items-center justify-between">
             <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-yellow-300 mb-4">
-                Toolskt
+                Scriptro
               </h1>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
                 Your Toolkit for Digital Success
               </h2>
               <p className="text-base sm:text-lg text-gray-300 mb-6">
-                Toolskt is a comprehensive collection of useful tools designed
+                Scriptro is a comprehensive collection of useful tools designed
                 to enhance productivity and simplify various tasks. It offers a
                 range of utilities from image processing to text manipulation,
                 catering to diverse user needs.
@@ -183,7 +183,7 @@ export default function Home() {
       <section className="bg-gray-900 py-12 md:py-16 lg:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-300 mb-8">
-            Why Choose Toolskt?
+            Why Choose scriptro?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-gray-800 p-6 rounded-lg">
@@ -225,7 +225,7 @@ export default function Home() {
           </h2>
           <p className="text-lg text-gray-300 mb-8">
             Join thousands of satisfied users who have transformed their digital
-            tasks with Toolskt.
+            tasks with scriptro.
           </p>
           <Link
             href="/category"
