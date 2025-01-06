@@ -22,11 +22,11 @@ const Navbar = () => {
   const NavLink = ({ href, children }) => (
     <Link
       href={href}
-      className={`${
+      className={`relative px-3 py-2 transition-all duration-300 ${
         pathname === href
-          ? "text-yellow-300 border-b"
-          : "hover:text-yellow-300 hover:border-b"
-      } cursor-pointer border-yellow-300`}
+          ? "text-yellow-300"
+          : "text-white hover:text-yellow-300"
+      } before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-0.5 before:bg-yellow-300 before:transition-all before:duration-300 hover:before:w-full`}
       onClick={() => setIsMenuOpen(false)}
     >
       {children}
@@ -34,108 +34,69 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-slate-950">
-      <div className="py-6 flex items-center justify-between text-white px-10">
-        <div className="text-2xl font-bold text-yellow-300">Scriptro</div>
-        
-        {/* Desktop menu */}
-        <div className="md:flex justify-between items-center gap-10 hidden">
-          <NavLink href="/">Home</NavLink>
-          <NavLink href="/category">Tools</NavLink>
-          <NavLink href="/contact">Contact</NavLink>
-        </div>
-        
-        {/* Login/Logout buttons for desktop */}
-        <button
-          onClick={() => {
-            dispatch(toggleLoginPage());
-          }}
-          className={`px-4 py-2 ${
-            isAuthenticated ? "" : "md:flex"
-          } hidden rounded shadow hover:shadow-lg bg-transparent cursor-pointer hover:bg-yellow-300 text-yellow-300 hover:text-black border border-yellow-300 hover:border-transparent`}
-        >
-          Login
-        </button>
-        <button
-          onClick={() => {
-            dispatch(logoutUser());
-          }}
-          className={`px-4 py-2 hidden ${
-            isAuthenticated ? "md:flex" : ""
-          } rounded shadow hover:shadow-lg bg-transparent cursor-pointer hover:bg-yellow-300 text-yellow-300 hover:text-black border border-yellow-300 hover:border-transparent`}
-        >
-          Logout
-        </button>
-
-        {/* Hamburger menu button */}
-        <div
-          onClick={toggleMenu}
-          className="w-10 h-10 md:hidden cursor-pointer mt-2 inline-flex items-center justify-center rounded-full bg-yellow-300 text-black mb-4"
-        >
-          {isMenuOpen ? (
-            <svg
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="w-6 h-6"
-              viewBox="0 0 24 24"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" />
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          ) : (
-            <svg
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="w-6 h-6"
-              viewBox="0 0 24 24"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          )}
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden py-4">
-          <div className="flex flex-col items-center text-white gap-4">
+    <div className="relative backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+      <div className="container mx-auto">
+        <div className="py-4 flex items-center justify-between text-white px-4 md:px-6">
+          <div className="text-2xl font-bold bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">
+            Scriptro
+          </div>
+          
+          {/* Desktop menu */}
+          <div className="md:flex justify-between items-center gap-8 hidden">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/category">Tools</NavLink>
             <NavLink href="/contact">Contact</NavLink>
-            {isAuthenticated ? (
-              <button
-                onClick={() => {
-                  dispatch(logoutUser());
-                  setIsMenuOpen(false);
-                }}
-                className="px-4 py-2 rounded shadow hover:shadow-lg bg-transparent cursor-pointer hover:bg-yellow-300 text-yellow-300 hover:text-black border border-yellow-300 hover:border-transparent"
-              >
-                Logout
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  dispatch(toggleLoginPage());
-                  setIsMenuOpen(false);
-                }}
-                className="px-4 py-2 rounded shadow hover:shadow-lg bg-transparent cursor-pointer hover:bg-yellow-300 text-yellow-300 hover:text-black border border-yellow-300 hover:border-transparent"
-              >
-                Login
-              </button>
-            )}
+          </div>
+          
+          {/* Login/Logout buttons for desktop */}
+          <div className="hidden md:flex gap-4">
+            <button
+              onClick={() => dispatch(toggleLoginPage())}
+              className={`px-6 py-2 ${
+                isAuthenticated ? "hidden" : "flex"
+              } rounded-full transition-all duration-300 bg-gradient-to-r from-yellow-300 to-yellow-500 text-black hover:shadow-lg hover:shadow-yellow-500/25 hover:scale-105`}
+            >
+              Login
+            </button>
+            <button
+              onClick={() => dispatch(logoutUser())}
+              className={`px-6 py-2 ${
+                isAuthenticated ? "flex" : "hidden"
+              } rounded-full transition-all duration-300 border border-yellow-300 text-yellow-300 hover:bg-yellow-300 hover:text-black hover:shadow-lg hover:shadow-yellow-500/25 hover:scale-105`}
+            >
+              Logout
+            </button>
+          </div>
+
+          {/* Hamburger menu button */}
+          <button
+            onClick={toggleMenu}
+            className="w-10 h-10 md:hidden relative focus:outline-none bg-gradient-to-r from-yellow-300 to-yellow-500 rounded-full"
+          >
+            <span className={`block absolute h-0.5 w-6 bg-black transform transition duration-300 ease-in-out ${isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'} left-2`}></span>
+            <span className={`block absolute h-0.5 w-6 bg-black transform transition duration-300 ease-in-out ${isMenuOpen ? 'opacity-0' : 'opacity-100'} left-2`}></span>
+            <span className={`block absolute h-0.5 w-6 bg-black transform transition duration-300 ease-in-out ${isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1.5'} left-2`}></span>
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-64' : 'max-h-0'}`}>
+          <div className="flex flex-col items-center text-white gap-6 py-6">
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/category">Tools</NavLink>
+            <NavLink href="/contact">Contact</NavLink>
+            <button
+              onClick={() => {
+                isAuthenticated ? dispatch(logoutUser()) : dispatch(toggleLoginPage());
+                setIsMenuOpen(false);
+              }}
+              className="px-6 py-2 rounded-full transition-all duration-300 bg-gradient-to-r from-yellow-300 to-yellow-500 text-black hover:shadow-lg hover:shadow-yellow-500/25"
+            >
+              {isAuthenticated ? 'Logout' : 'Login'}
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

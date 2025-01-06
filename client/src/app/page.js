@@ -17,106 +17,128 @@ export default function Home() {
   useEffect(() => {}, []);
 
   return (
-    <div className="text-white bg-slate-950">
+    <div className="text-white bg-gradient-to-b from-slate-950 to-slate-900">
       <Signup />
       <Login />
       <Navbar pathname={"/"} />
 
-      <div className="bg-gray-800 py-12 md:py-16 lg:py-20 ">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between">
-            <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-yellow-300 mb-4">
-                Scriptro
+      {/* Hero Section */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+        <div className="container mx-auto px-4 py-24 sm:px-6 lg:px-8 relative">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="w-full lg:w-1/2 space-y-8">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-500">
+                  Scriptro
+                </span>
               </h1>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
-                Your Toolkit for Digital Success
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-100">
+                Transform Your Digital Workflow
               </h2>
-              <p className="text-base sm:text-lg text-gray-300 mb-6">
-                Scriptro is a comprehensive collection of useful tools designed
-                to enhance productivity and simplify various tasks. It offers a
-                range of utilities from image processing to text manipulation,
-                catering to diverse user needs.
+              <p className="text-xl text-gray-300 leading-relaxed">
+                Access powerful tools for PDF editing, image processing, and file conversion.
+                Streamline your work with our comprehensive suite of digital utilities.
               </p>
-              <Link
-                href={"/category"}
-                className={`inline-block bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black font-semibold py-2 px-6 border border-yellow-300 hover:border-transparent rounded-lg transition duration-300`}
-              >
-                Explore Now
-              </Link>
+              <div className="flex gap-4">
+                <Link
+                  href="/category"
+                  className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium transition duration-300 ease-out border-2 border-yellow-300 rounded-full shadow-md text-xl"
+                >
+                  <span className="absolute inset-0 flex items-center justify-center w-full h-full text-black duration-300 -translate-x-full bg-yellow-300 group-hover:translate-x-0 ease">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </span>
+                  <span className="absolute flex items-center justify-center w-full h-full text-yellow-300 transition-all duration-300 transform group-hover:translate-x-full ease">
+                    Get Started
+                  </span>
+                  <span className="relative invisible">Get Started</span>
+                </Link>
+              </div>
             </div>
+            {/* <div className="w-full lg:w-1/2">
+              <div className="relative">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-300 to-yellow-500 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                <img
+                  src="/dashboard-preview.png"
+                  alt="Dashboard Preview"
+                  className="relative rounded-lg shadow-2xl"
+                />
+              </div>
+            </div> */}
           </div>
         </div>
       </div>
-      <section className="bg-gray-900 py-12 md:py-16 lg:py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-300 mb-8">
-            Popular Tools
+
+      {/* Popular Tools Section */}
+      <section className="py-20 bg-slate-900/50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-500">
+              Popular Tools
+            </span>
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link
-              href="/tools/pdf-editor"
-              className="bg-slate-800 p-6 rounded-lg hover:bg-slate-700 transition-colors duration-300 cursor-pointer"
-            >
-              <h3 className="text-xl font-semibold text-white mb-2">
-                PDF Editor
-              </h3>
-              <p className="text-gray-300">
-                Edit and manipulate PDF files easily
-              </p>
-            </Link>
-            <Link
-              href="/tools/image-background-remover"
-              className="bg-slate-800 p-6 rounded-lg hover:bg-slate-700 transition-colors duration-300 cursor-pointer"
-            >
-              <h3 className="text-xl font-semibold text-white mb-2">
-                Background Remover
-              </h3>
-              <p className="text-gray-300">Remove image backgrounds with AI</p>
-            </Link>
-            <Link
-              href="/tools/text-to-speech"
-              className="bg-slate-800 p-6 rounded-lg hover:bg-slate-700 transition-colors duration-300 cursor-pointer"
-            >
-              <h3 className="text-xl font-semibold text-white mb-2">
-                Text to Speech
-              </h3>
-              <p className="text-gray-300">
-                Convert text to natural-sounding audio
-              </p>
-            </Link>
-            <Link
-              href="/tools/qr-code-generator"
-              className="bg-slate-800 p-6 rounded-lg hover:bg-slate-700 transition-colors duration-300 cursor-pointer"
-            >
-              <h3 className="text-xl font-semibold text-white mb-2">
-                QR Code Generator
-              </h3>
-              <p className="text-gray-300">Create custom QR codes quickly</p>
-            </Link>
-            <Link
-              href="/tools/file-converter"
-              className="bg-slate-800 p-6 rounded-lg hover:bg-slate-700 transition-colors duration-300 cursor-pointer"
-            >
-              <h3 className="text-xl font-semibold text-white mb-2">
-                File Converter
-              </h3>
-              <p className="text-gray-300">
-                Convert files between various formats
-              </p>
-            </Link>
-            <Link
-              href="/tools/password-generator"
-              className="bg-slate-800 p-6 rounded-lg hover:bg-slate-700 transition-colors duration-300 cursor-pointer"
-            >
-              <h3 className="text-xl font-semibold text-white mb-2">
-                Password Generator
-              </h3>
-              <p className="text-gray-300">Generate strong, secure passwords</p>
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Tool cards with enhanced styling */}
+            {[
+              /* Replace existing tool cards with enhanced versions */
+              {
+                title: "PDF Editor",
+                description: "Edit and manipulate PDF files easily",
+                icon: "📄",
+                href: "/tools/pdf-editor"
+              },
+              {
+                title: "Background Remover",
+                description: "Remove image backgrounds with AI",
+                icon: "🖼️",
+                href: "category/tool/image-background-remover"
+              },
+              {
+                title: "Text to Speech",
+                description: "Convert text to natural-sounding audio",
+                icon: "🔊",
+                href: "category/tool/text-to-audio"
+              },
+              {
+                title: "QR Code Generator",
+                description: "Create custom QR codes quickly",
+                icon: "🔲",
+                href: "category/tool/text-to-qr"
+              },
+              {
+                title: "JPG to PNG Converter",
+                description: "Convert image formats in seconds",
+                icon: "🔄",
+                href: "category/tool/jpg-to-png"
+              },
+              {
+                title: "Password Generator",
+                description: "Generate strong, secure passwords",
+                icon: "🔐",
+                href: "/category/tool/password-generator"
+              }
+            ].map((tool, index) => (
+              <Link
+                key={index}
+                href={tool.href}
+                className="group p-6 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl border border-slate-700/50"
+              >
+                <div className="text-4xl mb-4">{tool.icon}</div>
+                <h3 className="text-xl font-semibold text-yellow-300 mb-2">
+                  {tool.title}
+                </h3>
+                <p className="text-gray-300 group-hover:text-gray-100 transition-colors">
+                  {tool.description}
+                </p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Features Section */}
       <section className="bg-gray-800 py-12 md:py-16 lg:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-300 mb-8">
@@ -218,20 +240,23 @@ export default function Home() {
       </section>
       
 
-      <section className="bg-gray-800 py-12 md:py-16 lg:py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-yellow-300 mb-6">
-            Ready to Supercharge Your Workflow?
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-yellow-300/10 to-transparent"></div>
+        <div className="container mx-auto px-4 text-center relative">
+          <h2 className="text-4xl font-bold text-yellow-300 mb-6">
+            Ready to Transform Your Workflow?
           </h2>
-          <p className="text-lg text-gray-300 mb-8">
-            Join thousands of satisfied users who have transformed their digital
-            tasks with scriptro.
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Join thousands of professionals who trust Scriptro for their daily digital needs.
           </p>
           <Link
             href="/category"
-            className="inline-block bg-yellow-300 hover:bg-yellow-400 text-black font-semibold py-3 px-8 rounded-lg transition duration-300"
+            className="inline-flex items-center px-8 py-3 text-lg font-semibold text-black bg-yellow-300 rounded-full hover:bg-yellow-400 transition-colors duration-300"
           >
             Explore All Tools
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </Link>
         </div>
       </section>
