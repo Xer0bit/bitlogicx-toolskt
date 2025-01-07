@@ -35,13 +35,19 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold text-yellow-300 mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {['Home', 'About', 'Tools', 'Pricing', 'Contact'].map((item) => (
-                <li key={item}>
-                  <Link 
-                    href={`/${item.toLowerCase()}`}
+              {[
+                { name: 'Home', href: '/' },
+                { name: 'About', href: '/about' },
+                { name: 'Tools', href: '/category' },
+                { name: 'Pricing', href: '/pricing-plans' },
+                { name: 'Contact', href: '/contact' },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
                     className="text-gray-400 hover:text-yellow-300 transition-colors text-sm"
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -59,7 +65,7 @@ export default function Footer() {
                 'JPG to PNG',
               ].map((tool) => (
                 <li key={tool}>
-                  <Link 
+                  <Link
                     href={`category/tool/${tool.toLowerCase().replace(/\s+/g, '-')}`}
                     className="text-gray-400 hover:text-yellow-300 transition-colors text-sm"
                   >
@@ -99,19 +105,19 @@ export default function Footer() {
               © {new Date().getFullYear()} Scriptro. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <Link 
+              <Link
                 href="/privacy"
                 className="text-sm text-gray-400 hover:text-yellow-300 transition-colors"
               >
                 Privacy Policy
               </Link>
-              <Link 
+              <Link
                 href="/terms"
                 className="text-sm text-gray-400 hover:text-yellow-300 transition-colors"
               >
                 Terms of Service
               </Link>
-              <Link 
+              <Link
                 href="/cookies"
                 className="text-sm text-gray-400 hover:text-yellow-300 transition-colors"
               >

@@ -107,39 +107,93 @@ export default function Home() {
               {[
                 /* Replace existing tool cards with enhanced versions */
                 {
-                  title: "PDF Editor",
-                  description: "Edit and manipulate PDF files easily",
-                  icon: "📄",
-                  href: "/tools/pdf-editor"
+                  title: "QR Code Generator",
+                  description: "Get QR codes for your text quickly",
+                  icon: (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-8 h-8"
+                    >
+                      <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm8 0h8v4h-4v4h-4V4zm2 2v2h2V6h-2zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm8 0h2v2h-2v-2zm2 0h2v2h2v2h-2v2h-2v-2h-2v-2h2v-2zm2 2v2h-2v-2h2z" />
+                    </svg>
+                  ),
+                  href: "category/tool/text-to-qr"
                 },
                 {
-                  title: "Background Remover",
+                  title: "Image Background Remover",
                   description: "Remove image backgrounds with AI",
-                  icon: "🖼️",
+                  icon: (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-8 h-8"
+                    >
+                      <path d="M19 6h-3V5a3 3 0 1 0-6 0v1H7a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3zM10 5a1 1 0 1 1 2 0v1h-2V5zm10 14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v10z" />
+                    </svg>
+                  ),
                   href: "category/tool/image-background-remover"
                 },
                 {
-                  title: "Text to Speech",
+                  title: "Text to Audio",
                   description: "Convert text to natural-sounding audio",
-                  icon: "🔊",
+                  icon: (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-8 h-8"
+                    >
+                      <path d="M3 5v14h2V5H3zm14 0v14h2V5h-2zm-4 1v12h2V6h-2zm4 0v10h2V6h-2zm-8 1v10h2V7H9zm4 1v8h2V8h-2z" />
+                    </svg>
+                  ),
                   href: "category/tool/text-to-audio"
                 },
                 {
-                  title: "QR Code Generator",
-                  description: "Create custom QR codes quickly",
-                  icon: "🔲",
-                  href: "category/tool/text-to-qr"
+                  title: "PDF TO Word Converter",
+                  description: "Convert PDF files to Word documents",
+                  icon: (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-8 h-8"
+                    >
+                      <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16h-4v-1.5h4V18zm0-3h-4v-1.5h4V15zm0-3h-4v-1.5h4V12zm-5.5 6h-1l-1.72-4.24h-.05L6.5 18h-1.05l2.14-6h1.27l2.14 6h-1.05zm.5-7.5h-4V8h4v1.5z" />
+                    </svg>
+                  ),
+                  href: "category/tool/pdf-to-word"
                 },
                 {
                   title: "JPG to PNG Converter",
                   description: "Convert image formats in seconds",
-                  icon: "🔄",
+                  icon: (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-8 h-8"
+                    >
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 18H8v-2h8v2zm0-4H8v-2h8v2zm-2-8V3.5L18.5 10H14z" />
+                    </svg>
+                  ),
                   href: "category/tool/jpg-to-png"
                 },
                 {
                   title: "Password Generator",
                   description: "Generate strong, secure passwords",
-                  icon: "🔐",
+                  icon: (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-8 h-8"
+                    >
+                      <path d="M12 2a6 6 0 0 0-6 6v4H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-1V8a6 6 0 0 0-6-6zm0 2a4 4 0 0 1 4 4v4H8V8a4 4 0 0 1 4-4zm-4 10h8v6H8v-6z" />
+                    </svg>
+                  ),
                   href: "/category/tool/password-generator"
                 }
               ].map((tool, index) => (
