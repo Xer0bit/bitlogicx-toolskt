@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { toggleLoginPage } from "@/redux/slice/webSlice";
 import { logoutUser } from "@/redux/slice/userSlice";
 import { motion } from "framer-motion";
@@ -13,6 +13,7 @@ const Navbar = () => {
   const isAuthenticated = useSelector((data) => data.user.isAuthenticated);
   const dispatch = useDispatch();
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,14 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleAuthClick = () => {
+    if (isAuthenticated) {
+      dispatch(logoutUser());
+    } else {
+      router.push('/login');
+    }
+  };
 
   const NavLink = ({ href, children }) => {
     const isActive = pathname === href;
@@ -77,21 +86,16 @@ const Navbar = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            {!isAuthenticated ? (
-              <button
-                onClick={() => dispatch(toggleLoginPage())}
-                className="px-6 py-2 rounded-full bg-gradient-to-r from-yellow-300 to-yellow-500 text-black font-medium transform hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-500/25"
-              >
-                Login
-              </button>
-            ) : (
-              <button
-                onClick={() => dispatch(logoutUser())}
-                className="px-6 py-2 rounded-full border-2 border-yellow-400 text-yellow-400 font-medium hover:bg-yellow-400 hover:text-black transform hover:scale-105 transition-all duration-300"
-              >
-                Logout
-              </button>
-            )}
+            <button
+              onClick={handleAuthClick}
+              className={`px-6 py-2 rounded-full ${
+                !isAuthenticated
+                  ? "bg-gradient-to-r from-yellow-300 to-yellow-500 text-black"
+                  : "border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black"
+              } font-medium transform hover:scale-105 transition-all duration-300`}
+            >
+              {isAuthenticated ? "Logout" : "Login"}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -156,7 +160,7 @@ const Navbar = () => {
               onClick={() => {
                 isAuthenticated
                   ? dispatch(logoutUser())
-                  : dispatch(toggleLoginPage());
+                  : router.push('/login');
                 setIsMenuOpen(false);
               }}
               className="w-full px-6 py-2 rounded-full bg-gradient-to-r from-yellow-300 to-yellow-500 text-black font-medium transform hover:scale-105 transition-all duration-300"
