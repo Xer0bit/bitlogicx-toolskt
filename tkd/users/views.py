@@ -9,6 +9,11 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from .utils import decode_jwt_token
 from django.contrib.auth.hashers import make_password, check_password
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
+from django.utils.decorators import method_decorator
+from django.http import JsonResponse
+from django.middleware.csrf import get_token
+
 # Create your views here.
 
 User = get_user_model()
@@ -16,6 +21,8 @@ User = get_user_model()
 # views.py
 from django.contrib.auth import authenticate
 
+@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class AdminLoginView(APIView):
     def post(self, request, *args, **kwargs):
         email = request.data.get('email')
@@ -27,8 +34,8 @@ class AdminLoginView(APIView):
             return Response({'isSuperUser': True}, status=status.HTTP_200_OK)
         return Response({'isSuperUser': False}, status=status.HTTP_401_UNAUTHORIZED)
 
-
-
+@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class RegisterView(APIView):
     def post(self, request):
         email = request.data['email']
@@ -144,5 +151,32 @@ class UsersView(APIView):
         
         user.delete()
         return Response({'message': 'User deleted successfully'}, status=status.HTTP_200_OK)
-    
-    
+
+from rest_framework.views import APIView
+from .serializers import LoginSerializer
+
+@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(ensure_csrf_cookie, name='dispatch')
+class LoginView(APIView):
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.validated_data['user']
+            refresh = RefreshToken.for_user(user)
+            
+            return Response({
+                'user': UserSerializer(user).data,
+                'tokens': {
+                    'refresh': str(refresh),
+                    'access': str(refresh.access_token),
+                }
+            })
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@ensure_csrf_cookie
+def get_csrf_token(request):
+    """
+    View to return CSRF token for the client
+    """
+    return JsonResponse({'csrfToken': get_token(request)})
+

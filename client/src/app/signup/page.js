@@ -10,15 +10,41 @@ export default function SignupPage() {
   const [error, setError] = useState('');
   const router = useRouter();
 
+  const normalizeUrl = (baseUrl, path) => {
+    return `${baseUrl.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
+  };
+
+  const getCsrfToken = async () => {
+    try {
+      const url = normalizeUrl(process.env.NEXT_PUBLIC_API_URL, 'get-csrf-token/');
+      console.log('Fetching CSRF token from:', url);
+      const response = await fetch(url, {
+        credentials: 'include',
+      });
+      const data = await response.json();
+      return data.csrfToken;
+    } catch (error) {
+      console.error('Error fetching CSRF token:', error);
+      return null;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, {
+      const csrfToken = await getCsrfToken();
+      const url = normalizeUrl(process.env.NEXT_PUBLIC_API_URL, 'accounts/register/');
+      
+      console.log('Making registration request to:', url);
+
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken,
         },
         body: JSON.stringify({ name, email, password }),
+        credentials: 'include',
       });
 
       const data = await response.json();
@@ -33,6 +59,7 @@ export default function SignupPage() {
     }
   };
 
+  
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
       <div className="max-w-md w-full">

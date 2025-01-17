@@ -1,7 +1,24 @@
 import Link from 'next/link';
 import { FaGithub, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { csrfHeaders } from '../utils/csrf';
 
 export default function Footer() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: csrfHeaders,
+        credentials: 'include',
+        body: JSON.stringify({ email })
+      });
+      // Handle response
+    } catch (error) {
+      console.error('Newsletter subscription failed:', error);
+    }
+  };
+
   return (
     <footer className="bg-slate-950 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -82,8 +99,9 @@ export default function Footer() {
             <p className="text-sm text-gray-400 mb-4">
               Subscribe to our newsletter for the latest updates and features.
             </p>
-            <form className="space-y-2">
+            <form onSubmit={handleSubmit} className="space-y-2">
               <input
+                name="email"
                 type="email"
                 placeholder="Enter your email"
                 className="w-full px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg focus:outline-none focus:border-yellow-300 text-sm"

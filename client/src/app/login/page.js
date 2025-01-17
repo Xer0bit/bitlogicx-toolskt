@@ -12,27 +12,74 @@ export default function LoginPage() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const normalizeUrl = (baseUrl, path) => {
+    return `${baseUrl.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
+  };
+
+  const getCsrfToken = async () => {
+    try {
+      const url = normalizeUrl(process.env.NEXT_PUBLIC_API_URL, 'get-csrf-token/');
+      console.log('Fetching CSRF token from:', url);
+      const response = await fetch(url, {
+        credentials: 'include',
+      });
+      const data = await response.json();
+      return data.csrfToken;
+    } catch (error) {
+      console.error('Error fetching CSRF token:', error);
+      return null;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, {
+      const csrfToken = await getCsrfToken();
+      const url = normalizeUrl(process.env.NEXT_PUBLIC_API_URL, 'accounts/login/');
+      
+      console.log('Making login request to:', url);
+      
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRFToken': csrfToken,
         },
         body: JSON.stringify({ email, password }),
+        credentials: 'include',
       });
 
-      const data = await response.json();
+      let responseData;
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        responseData = await response.json();
+      } else {
+        const textResponse = await response.text();
+        console.error('Non-JSON response:', textResponse);
+        throw new Error('Unexpected response format from server');
+      }
 
-      if (response.ok) {
-        dispatch(loginUser(data));
+      if (response.status === 403) {
+        setError('Invalid credentials. Please check your email and password.');
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error(responseData.message || `HTTP error! status: ${response.status}`);
+      }
+
+      if (responseData.user) {
+        dispatch(loginUser(responseData.user));
         router.push('/category');
       } else {
-        setError(data.message || 'Login failed');
+        setError('Login successful but user data is missing');
       }
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      console.error('Login error:', err);
+      setError(err.message || 'An error occurred during login. Please try again.');
     }
   };
 

@@ -7,12 +7,24 @@ const inter = Inter({
 import { Providers } from "@/redux/provider";
 
 export const metadata = {
-  metadataBase: new URL('https://scriptro.com'),
-  title: {
-    default: 'Scriptro - Digital Tools Platform | Online File Tools & Converters',
-    template: '%s | scriptro'
+  metadataBase: new URL('https://www.scriptro.com'),
+  title: 'Scriptro - Online Developer Tools',
+  description: 'Professional web tools for developers and digital professionals',
+  openGraph: {
+    title: 'Scriptro - Online Developer Tools',
+    description: 'Professional web tools for developers and digital professionals',
+    url: 'https://www.scriptro.com',
+    siteName: 'Scriptro',
+    images: [
+      {
+        url: '/icons/scriptro.png',
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
   },
-  description: 'Free online tools for PDF editing, image manipulation, text conversion, and more. Easy-to-use digital tools to enhance your productivity.',
   keywords: [
     'online tools',
     'PDF editor',
@@ -30,22 +42,6 @@ export const metadata = {
     email: false,
     address: false,
     telephone: false,
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://scriptro.com',
-    siteName: 'scriptro',
-    title: 'scriptro - Digital Tools Platform',
-    description: 'Free online tools for PDF editing, image manipulation, text conversion, and more.',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'scriptro - Digital Tools Platform'
-      }
-    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -74,15 +70,6 @@ export const metadata = {
     canonical: 'https://scriptro.com',
     languages: {
       'en-US': 'https://scriptro.com',
-    },
-  },
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
-    other: {
-      rel: 'apple-touch-icon-precomposed',
-      url: '/apple-touch-icon-precomposed.png',
     },
   },
   manifest: '/site.webmanifest',

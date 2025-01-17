@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate
 
 User = get_user_model()
 
@@ -17,5 +18,24 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])  # Hash password
         user.save()
         return user
-        
-        
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(style={'input_type': 'password'})
+
+    def validate(self, data):
+        email = data.get('email')
+        password = data.get('password')
+
+        if email and password:
+            user = authenticate(email=email, password=password)
+            if user:
+                if not user.is_active:
+                    raise serializers.ValidationError('User account is disabled.')
+                if user.is_blocked:
+                    raise serializers.ValidationError('User account is blocked.')
+                data['user'] = user
+                return data
+            raise serializers.ValidationError('Invalid email or password.')
+        raise serializers.ValidationError('Must include "email" and "password".')
+

@@ -17,7 +17,7 @@ export default function Page() {
     if (!domain) return;
 
     setLoading(true);
-    console.log(domain);
+    //console.log(domain);
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/tools/domain-ip-checker/`,
@@ -28,7 +28,7 @@ export default function Page() {
           },
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
       setDomainInfo(response.data);
     } catch (error) {
       console.error("Error checking domain IP:", error);

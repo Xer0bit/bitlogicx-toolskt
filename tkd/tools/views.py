@@ -671,6 +671,11 @@ class BulkURLOpenerTool(APIView):
 
 import dns.resolver
 import dns.reversename
+import whois
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
 class DomainHostingCheckerTool(APIView):
 
     def post(self, request, *args, **kwargs):
@@ -701,34 +706,12 @@ class DomainHostingCheckerTool(APIView):
             return {
                 'domain_name': domain_name,
                 'ip_address': ip_address,
-                'hosting_provider': ptr_record,
-                'nameservers': nameservers,
-                'status': 'success'
+                'ptr_record': ptr_record,
+                'nameservers': nameservers
             }
-        except dns.resolver.NXDOMAIN:
-            return {
-                'domain_name': domain_name,
-                'status': 'error',
-                'message': 'Domain does not exist.'
-            }
-        except dns.resolver.NoAnswer:
-            return {
-                'domain_name': domain_name,
-                'status': 'error',
-                'message': 'No answer received from DNS query.'
-            }
-        except dns.resolver.Timeout:
-            return {
-                'domain_name': domain_name,
-                'status': 'error',
-                'message': 'DNS query timed out.'
-            }
+
         except Exception as e:
-            return {
-                'domain_name': domain_name,
-                'status': 'error',
-                'message': str(e)
-            }
+            return {'error': str(e)}
    
    
             

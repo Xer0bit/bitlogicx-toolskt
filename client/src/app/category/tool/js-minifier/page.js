@@ -5,7 +5,7 @@ import { FaJsSquare } from "react-icons/fa";
 
 export default function JsMinifierTool() {
   const [jsCode, setJsCode] = useState(`function helloWorld() {
-  console.log("Hello, World!"); // This is a comment
+  //console.log("Hello, World!"); // This is a comment
 }`);
 
   const [jsFile, setJsFile] = useState(null);

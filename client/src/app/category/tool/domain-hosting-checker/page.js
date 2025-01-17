@@ -28,7 +28,7 @@ export default function Page() {
           },
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
       setDomainInfo(response.data);
     } catch (error) {
       console.error("Error checking domain hosting:", error);

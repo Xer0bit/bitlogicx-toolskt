@@ -34,7 +34,7 @@ export default function Page() {
           responseType: "blob", // Ensure response is treated as a blob
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
       const blob = new Blob([response.data], { type: "application/msword" });
       const url = window.URL.createObjectURL(blob);
       setConvertedFile(url);

@@ -51,7 +51,7 @@ export default function ManageUsers() {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/users/getall");
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/getall`);
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -59,12 +59,12 @@ export default function ManageUsers() {
   };
 
   const deleteUser = async (user) => {
-    console.log(user.email);
+    //console.log(user.email);
     try {
       const response = await axios.delete(
-        `http://localhost:5000/users/delete/${user.email}`
+        `${process.env.NEXT_PUBLIC_API_URL}/users/delete/${user.email}`
       );
-      console.log(response.data);
+      //console.log(response.data);
       fetchUsers();
     } catch (error) {
       console.error("Error deleting users:", error);
@@ -72,12 +72,12 @@ export default function ManageUsers() {
   };
 
   const isActiveUser = async (user) => {
-    console.log(user.email);
+    //console.log(user.email);
     try {
       const response = await axios.post(
-        `http://localhost:5000/users/is_active/${user.email}`
+        `${process.env.NEXT_PUBLIC_API_URL}/users/is_active/${user.email}`
       );
-      console.log(response.data);
+      //console.log(response.data);
       fetchUsers();
     } catch (error) {
       console.error("Error deleting users:", error);
@@ -87,9 +87,9 @@ export default function ManageUsers() {
   useEffect(() => {
     // Fetch users from Django API
     axios
-      .get("http://localhost:5000/users/getall/")
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/users/getall/`)
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setUsers(response.data);
         setLoading(false);
       })

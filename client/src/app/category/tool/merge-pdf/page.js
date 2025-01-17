@@ -9,7 +9,12 @@ export default function Page() {
   const [loading, setLoading] = useState(false);
 
   const handleFilesChange = (e) => {
-    setFiles(Array.from(e.target.files));
+    const selectedFiles = Array.from(e.target.files);
+    const filteredFiles = selectedFiles.filter(file => file.size <= 20 * 1024 * 1024); // 20 MB in bytes
+    if (filteredFiles.length < selectedFiles.length) {
+      alert("Some files were too large and have been excluded.");
+    }
+    setFiles(filteredFiles);
   };
 
   const handleConvert = async (event) => {

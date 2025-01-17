@@ -38,7 +38,7 @@ export default function Page() {
           },
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
       setLogo(`data:image/png;base64,${response.data}`);
     } catch (error) {
       console.error("Error generating logo:", error);

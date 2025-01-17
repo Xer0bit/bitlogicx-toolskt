@@ -28,7 +28,7 @@ export default function Page() {
           },
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
       setDnsInfo(response.data);
     } catch (error) {
       console.error("Error finding DNS records:", error);

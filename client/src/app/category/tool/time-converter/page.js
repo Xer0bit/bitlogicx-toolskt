@@ -113,7 +113,7 @@ export default function TimeConverter() {
         to_zone: toTimeZone.value,
       })
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setConvertedTimes(response.data);
         setIsLoading(false);
         const defaultFromTime = {
@@ -123,7 +123,7 @@ export default function TimeConverter() {
         };
         const hours = response.data.time_difference_minutes / 60;
         const minutes = response.data.time_difference_seconds - hours * 60;
-        console.log(hours, minutes);
+        //console.log(hours, minutes);
         const defaultToTime = {
           hours: hours,
           minutes: minutes ? minutes : 0,

@@ -28,7 +28,7 @@ export default function BulkURLOpener() {
           },
         }
       );
-      console.log("Open URL results:", response.data);
+      //console.log("Open URL results:", response.data);
       setOpenResults(response.data.results);
     } catch (error) {
       console.error("Error opening URLs:", error);

@@ -9,6 +9,10 @@ export default function Page() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    if (file.size > 5 * 1024 * 1024) { // 5MB in bytes
+      alert("File size exceeds 5MB. Please upload a smaller file.");
+      return;
+    }
     setSelectedFile(file);
   };
 

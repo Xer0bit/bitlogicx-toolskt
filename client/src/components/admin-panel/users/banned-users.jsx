@@ -61,12 +61,12 @@ export default function BannedUsers() {
   };
 
   const deleteUser = async (user) => {
-    console.log(user.email);
+    //console.log(user.email);
     try {
       const response = await axios.delete(
         `http://localhost:5000/users/delete/${user.email}`
       );
-      console.log(response.data);
+      //console.log(response.data);
       fetchUsers();
     } catch (error) {
       console.error("Error deleting users:", error);
@@ -74,12 +74,12 @@ export default function BannedUsers() {
   };
 
   const isActiveUser = async (user) => {
-    console.log(user.email);
+    //console.log(user.email);
     try {
       const response = await axios.post(
         `http://localhost:5000/users/is_active/${user.email}`
       );
-      console.log(response.data);
+      //console.log(response.data);
       fetchUsers();
     } catch (error) {
       console.error("Error deleting users:", error);
@@ -91,7 +91,7 @@ export default function BannedUsers() {
     axios
       .get("http://localhost:5000/users/getall/")
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         const inactiveUsers = response.data.filter((user) => !user.is_active);
 
         setUsers(inactiveUsers);

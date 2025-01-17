@@ -29,7 +29,7 @@ export default function Page() {
           },
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
       setStrengthInfo(response.data);
     } catch (error) {
       console.error("Error checking password strength:", error);

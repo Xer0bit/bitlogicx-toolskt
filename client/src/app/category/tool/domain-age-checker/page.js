@@ -28,7 +28,7 @@ export default function Page() {
           },
         }
       );
-      console.log("Domain age results:", response.data);
+      //console.log("Domain age results:", response.data);
       setAgeResults(response.data.results);
     } catch (error) {
       console.error("Error checking domain age:", error);

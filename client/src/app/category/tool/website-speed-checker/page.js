@@ -17,7 +17,7 @@ export default function Page() {
     if (!url) return;
 
     setLoading(true);
-    console.log(url);
+    //console.log(url);
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/tools/check-speed/`,
@@ -28,7 +28,7 @@ export default function Page() {
           },
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
       setSpeedInfo(response.data);
     } catch (error) {
       console.error("Error checking website speed:", error);
