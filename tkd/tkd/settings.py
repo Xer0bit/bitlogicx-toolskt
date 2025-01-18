@@ -9,12 +9,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z^f_#6u7fcixh^dv+4#h@bcxs1b=p@t0p1ukd2@_ygjkmgl@%)'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-secret-key-here')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1', '192.168.1.44']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -93,10 +93,17 @@ WSGI_APPLICATION = 'tkd.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
+
+# Ensure the directory exists
+os.makedirs(os.path.join(BASE_DIR, 'localdatabase'), exist_ok=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -123,10 +130,10 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATIC_ROOT = '/app/static'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/app/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -138,18 +145,21 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'http://localhost:3001',
-    'http://192.168.18.152:3000',
-    'http://192.168.1.44:5000',  # Add your development server
+    'http://localhost:8000',
+    'http://localhost:8080',
+    'http://192.168.1.65:5001',
+    'http://58.27.218.171',
+    'https://58.27.218.171',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',
-    'http://localhost:3001',
-    'http://192.168.18.152:3000',
-    'http://192.168.1.44:5000',  # Add your development server
-    'http://192.168.1.44',
+    'https://backend.scriptro.com',
+    'https://scriptro.com',
+    'http://localhost:8000',
+    'http://localhost:8080',
+    'http://192.168.1.65:5001',
+    'http://58.27.218.171',
+    'https://58.27.218.171',
 ]
 
 CORS_ALLOW_METHODS = [
@@ -178,7 +188,7 @@ CSRF_COOKIE_SAMESITE = None  # Changed from 'Lax'
 SESSION_COOKIE_SAMESITE = None  # Changed from 'Lax'
 CSRF_COOKIE_HTTPONLY = False
 SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_NAME = 'csrftoken'
 
@@ -192,3 +202,31 @@ CSRF_EXEMPT_URLS = [
 # Disable automatic URL slash appending
 APPEND_SLASH = False
 REMOVE_SLASH = False
+
+# Security settings
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+
+# Logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'django-error.log'),  # Ensure this path is correct
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
+
+# Ensure the directory exists
+os.makedirs(os.path.join(BASE_DIR, 'logs'), exist_ok=True)

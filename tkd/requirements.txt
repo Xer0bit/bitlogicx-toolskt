@@ -8,7 +8,6 @@ charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
 coloredlogs==15.0.1
-comtypes==1.4.5
 dicttoxml==1.7.16
 Django==5.0.6
 django-cors-headers==4.4.0
@@ -39,7 +38,7 @@ opencv-python-headless==4.10.0.84
 outcome==1.3.0.post0
 packaging==24.1
 pdf2docx==0.5.8
-pillow==10.4.0
+Pillow==10.4.0
 platformdirs==4.2.2
 pooch==1.8.2
 protobuf==5.27.2
@@ -49,17 +48,12 @@ PyJWT==2.8.0
 PyMatting==1.1.12
 PyMuPDF==1.24.7
 PyMuPDFb==1.24.6
-pypiwin32==223
-pyreadline3==3.4.1
-PySocks==1.7.1
 pytesseract==0.3.10
 python-dateutil==2.9.0.post0
 python-docx==1.1.2
 python-whois==0.9.4
-pyttsx3==2.90
 pytube==15.0.0
 pytz==2024.1
-pywin32==306
 referencing==0.35.1
 rembg==2.0.57
 requests==2.32.3
@@ -89,8 +83,15 @@ bcrypt
 moviepy
 qrcode
 markdown
-barcode
 html2text
 colorthief
 PyPDF2
-moviepymoviepy==1.0.3
+gunicorn==21.2.0
+psycopg2-binary==2.9.9
+python-dotenv==1.0.0
+barcode
+# Video processing
+moviepy==1.0.3
+decorator>=4.0.11
+imageio-ffmpeg>=0.4.3
+proglog>=0.1.9

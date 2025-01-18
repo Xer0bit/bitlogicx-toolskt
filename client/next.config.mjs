@@ -3,9 +3,9 @@ const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
   images: {
-    domains: ['api.scriptro.com', 'www.scriptro.com'],
+    domains: ['api.scriptro.com', 'www.scriptro.com', 'backend.scriptro.com'],
+    unoptimized: true
   },
-  // Add custom headers for security
   async headers() {
     return [
       {

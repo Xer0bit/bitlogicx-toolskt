@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: scriptro-app-dev
+    restart: always
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

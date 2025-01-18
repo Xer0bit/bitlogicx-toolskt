@@ -1,0 +1,2 @@
+mkdir -p src/{app,components,utils,redux}
+mkdir -p public/{fonts,icons}

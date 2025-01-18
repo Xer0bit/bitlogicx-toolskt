@@ -1,0 +1,19 @@
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+FROM node:18-alpine AS runner
+WORKDIR /app
+
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+EXPOSE 3002
+ENV PORT 3002
+ENV HOSTNAME "0.0.0.0"
+
+CMD ["node", "server.js"]

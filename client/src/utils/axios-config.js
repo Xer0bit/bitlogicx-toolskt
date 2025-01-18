@@ -5,16 +5,21 @@ const axiosInstance = axios.create({
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  withCredentials: true  // Add this for cross-domain cookies if needed
 });
 
-// Add response interceptor for error handling
 axiosInstance.interceptors.response.use(
   response => response,
   error => {
     if (error.code === 'ECONNABORTED') {
-      // Handle timeout
       console.error('Request timed out');
+    }
+    if (error.response?.status === 404) {
+      console.error('Backend service not found');
+    }
+    if (error.response?.status === 500) {
+      console.error('Backend server error');
     }
     return Promise.reject(error);
   }
